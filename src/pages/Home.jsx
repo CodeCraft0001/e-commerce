@@ -107,19 +107,48 @@ function Home() {
                                 </div>
                             </div>
                             {/* <!-- Product actions--> */}
-                            <div className="card-footer pt-0 border-top-0 bg-transparent text-center" style={{padding: isMobile ? '3px' : '13px', flexDirection: isMobile ? 'column' : 'row', marginInline: isMobile ? '25px' : '3px'}}>
+                            <div className="card-footer pt-0 border-top-0 bg-transparent text-center" style={{padding: isMobile ? '7px' : '13px', flexDirection: isMobile ? 'column' : 'row', marginInline: isMobile ? '2px' : '3px'}}>
                                 {/* <div className="text-center">
                                   <Link className='stretched-link' to={'/view/1'}></Link>
                                 </div> */}
                                 <Link   onClick={()=>dispatch(addToCart({...item, quantity: qties[item.id] || 1}))} className='btn'>
                                   <i className="fa-solid fa-cart-plus fa-2x" style={{color: "#63E6BE",}} />
                                 </Link> 
-                                <div className='row'>
-                                  <span className=''>Quantity :</span>
-                                  <div className='col-sm-4 col-2 col-md-4 '><button className='w-100 btn btn-light btn-sm' onClick={()=>handleIncreaseQty(item)} >+</button></div>
-                                  <div className='col-sm-4 col-8 col-md-4 '><input type="" value={qties[item.id] || 1} readOnly className='w-100 btn text-dark' /></div>
-                                  <div className='col-sm-4 col-2 col-md-4 '><button className='w-100 btn btn-light btn-sm' onClick={()=>updateQty(item.id,-1)} >-</button></div>
-                                </div>   
+                                {/* Quantity Controls - Improved Responsive Design */}
+{/* Quantity Controls - Improved Responsive Design */}
+<div className="d-flex flex-column align-items-center gap-1">
+  {/* Quantity Label - Always Above */}
+  <span className="fw-bold text-center">Quantity:</span>
+
+  {/* Buttons & Input in a Single Row */}
+  <div className="d-flex align-items-center gap-2" style={{ flexWrap: 'nowrap' }}>
+    <button 
+      className="btn btn-light btn-sm px-3"
+      onClick={() => handleIncreaseQty(item)}
+      style={{ minWidth: isMobile ? '30px' : '40px' }}
+    >
+      +
+    </button>
+
+    <input 
+      type="text"
+      value={qties[item.id] || 1}
+      readOnly
+      className="form-control text-center"
+      style={{ width: isMobile ? '45px' : '60px' }}
+    />
+
+    <button 
+      className="btn btn-light btn-sm px-3"
+      onClick={() => updateQty(item.id, -1)}
+      style={{ minWidth: isMobile ? '30px' : '40px' }}
+    >
+      -
+    </button>
+  </div>
+</div>
+
+  
                                      {/* <HomeInMobile/> */}
                              </div>
                         </div>
