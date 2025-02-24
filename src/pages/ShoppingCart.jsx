@@ -10,7 +10,7 @@ function ShoppingCart() {
   const cartlist = useSelector((state) => state.cartSlice.cartlist);
   const dispatch = useDispatch();
 
-  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isMobile = useMediaQuery({ maxWidth: 768 }); //checks this Condition
 
   return (
     <div className='container-fluid'>

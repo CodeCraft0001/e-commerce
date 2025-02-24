@@ -5,9 +5,10 @@ import { Link } from 'react-router';
 import { fetchProduct } from '../redux/slices/productSlice';
 import { useDispatch,useSelector } from 'react-redux';
 import Spinner from 'react-bootstrap/Spinner';
+import { useMediaQuery } from 'react-responsive';
 import { addToCart, updateQuantity } from '../redux/slices/cartSlice';
 //3                    ^
-
+// import HomeInMobile from './HomeInMobile';
 
 function Home() {
   const [index, setIndex] = useState(0);
@@ -35,6 +36,8 @@ function Home() {
       ...prev,[id]:Math.max(1,(prev[id] || 1)+value) //
     }))
   }
+
+  const isMobile = useMediaQuery( {maxWidth: 768} )
   
   useEffect(()=>{
     dispatch(fetchProduct())
@@ -72,7 +75,7 @@ function Home() {
       </Carousel.Item>
     </Carousel>
     
-    <section className="py-5">
+    <section className="py-4">
             {
               loading ? 
           
@@ -83,7 +86,7 @@ function Home() {
                   </Spinner>           
                 </h1>
               :
-              <div className="container px-4 px-lg-5 mt-5">
+              <div className="container bg-light px-4 px-lg-5 mt-4">
                 <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     {
                       product.length > 0 ?
@@ -92,10 +95,10 @@ function Home() {
                         <div className="card h-100">
                             {/* <!-- Product image--> */}
                             <Link to={`/view/${item.id}`}>
-                            <img className="card-img-top" src={item.thumbnail} alt="img" height={'200px'} />
+                            <img className="card-img-top" src={item.thumbnail} alt="img" height={ isMobile ? '150px' : '200px'} />
                             </Link>
                             {/* <!-- Product details--> */}
-                            <div className="card-body p-4">
+                            <div className="card-body p-2">
                                 <div className="text-center">
                                     {/* <!-- Product name--> */}
                                     <h5 className="fw-bolder">{item.title.slice(0,10)}...</h5>
@@ -104,7 +107,7 @@ function Home() {
                                 </div>
                             </div>
                             {/* <!-- Product actions--> */}
-                            <div className="card-footer p-4 pt-0 border-top-0 bg-transparent text-center">
+                            <div className="card-footer pt-0 border-top-0 bg-transparent text-center" style={{padding: isMobile ? '3px' : '13px', flexDirection: isMobile ? 'column' : 'row', marginInline: isMobile ? '5px' : '1px'}}>
                                 {/* <div className="text-center">
                                   <Link className='stretched-link' to={'/view/1'}></Link>
                                 </div> */}
@@ -112,11 +115,12 @@ function Home() {
                                   <i className="fa-solid fa-cart-plus fa-2x" style={{color: "#63E6BE",}} />
                                 </Link> 
                                 <div className='row'>
-                                  <span>Quantity :</span>
-                                  <div className='col-sm-12 col-md-2 '><button className='w-100 btn btn-light' onClick={()=>handleIncreaseQty(item)} >+</button></div>
-                                  <div className='col-sm-12 col-md-8 '><input type="" value={qties[item.id] || 1} readOnly className='w-100 btn text-dark' /></div>
-                                  <div className='col-sm-12 col-md-2 '><button className='w-100 btn btn-light' onClick={()=>updateQty(item.id,-1)} >-</button></div>
-                                </div>                          
+                                  <span className=''>Quantity :</span>
+                                  <div className='col-sm-4 col-2 col-md-4 '><button className='w-100 btn btn-light btn-sm' onClick={()=>handleIncreaseQty(item)} >+</button></div>
+                                  <div className='col-sm-4 col-8 col-md-4 '><input type="" value={qties[item.id] || 1} readOnly className='w-100 btn text-dark' /></div>
+                                  <div className='col-sm-4 col-2 col-md-4 '><button className='w-100 btn btn-light btn-sm' onClick={()=>updateQty(item.id,-1)} >-</button></div>
+                                </div>   
+                                     {/* <HomeInMobile/> */}
                              </div>
                         </div>
                     </div>
