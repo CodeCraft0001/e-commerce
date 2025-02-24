@@ -1,0 +1,13 @@
+.ofCanva-custom{
+    background: rgb(2,0,36);
+background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 50%, rgba(111,53,62,1) 100%);
+}
+
+.badge-top-right {
+    position: absolute;
+    top: -5px;  /* Adjust the distance from the top */
+    right: -5px; /* Adjust the distance from the right */
+    font-size: 12px; /* Make it smaller */
+    padding: 3px 6px; /* Adjust padding */
+    border-radius: 50%; /* Make it round */
+  }

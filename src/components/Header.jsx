@@ -1,0 +1,90 @@
+import React from 'react'
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import { Link } from 'react-router';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { Offcanvas, Button } from 'react-bootstrap';
+import './Header.css'
+// import cartSlice from '../redux/slices/cartSlice'
+
+
+function Header() {
+
+  const [cartCount, setCartCount] = useState(0)
+
+  //For Toggle Functionality:
+  const [show,setShow] = useState(false)
+
+  const {cartlist} = useSelector((state)=>state.cartSlice)
+
+  useEffect(()=>{
+    setCartCount(cartlist.length)
+  },[cartlist])
+
+  console.log(cartCount);
+  
+
+  return (
+    <div className='relative w-full'>
+      <div className='w-full bg-primary text-white d-flex justify-content-between fw-bold py-2 px-5 fixed top-0 z-50'>
+        <span className='
+        '>Holliday Offer Up to <span className='text-warning fa-fade pe-2'>50% OFF</span><i className="fa-solid fa-champagne-glasses" style={{color: "#611b6f",}} /></span>
+        <span>
+        <button className="fa-brands fa-facebook border-0 bg-transparent p-2" />
+        <button className="fa-brands fa-instagram border-0 bg-transparent p-2" />
+        <button className="fa-brands fa-twitter border-0 bg-transparent p-2" />
+        <button className="fa-solid fa-envelope border-0 bg-transparent p-2" />
+        <button className="fa-solid fa-phone border-0 bg-transparent p-2" />
+        </span>
+      </div>
+      <Navbar expand="lg" className="custom-navbar bg-success">
+        <Container>
+          {/* Brand Logo */}
+          <Navbar.Brand href="#home" className="fw-bold fs-3">
+            <Link to="/" className="text-decoration-none text-dark display-5 fw-bold">
+              <i className="fa-solid fa-cart-shopping" flip style={{ color: '#B197FC' }} />{' '}
+              ClickCart
+            </Link>
+          </Navbar.Brand>
+
+          {/* Toggle Button (Opens Sidebar) */}
+          <Button variant="info" className="ms-auto" onClick={() => setShow(true)}>
+            <i className="fa-solid fa-bars fa-lg"></i>
+          </Button>
+
+          {/* Sidebar (Offcanvas) */}
+          <Offcanvas show={show} className='bg-secondary text-white ofCanva-custom' onHide={() => setShow(false)} placement="end">
+            <Offcanvas.Header closeButton closeVariant='white'>
+              <Offcanvas.Title>Menu</Offcanvas.Title>
+            </Offcanvas.Header>
+            <Offcanvas.Body>
+              <Nav className="ms-auto flex-column">
+                <Nav.Link as={Link} to="/" className="nav-item fw-bold text-white">
+                  Home
+                </Nav.Link>
+                <Nav.Link as={Link} to="/cart" className="nav-item fw-bold text-dark">
+                  <div className='position-relative d-inline-block'>
+                    <i className="fa-solid fa-cart-plus fa-2x" style={{ color: '#63E6BE' }} />
+                    <span className="badge bg-light text-primary ms-2 badge-top-right">{cartCount}</span>
+                  </div>
+                </Nav.Link>
+                <NavDropdown title="Category" id="basic-nav-dropdown" className="nav-item fw-bold">
+                  <NavDropdown.Item href="#action/3.1">Electronics</NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.2">Fashion</NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                </NavDropdown>
+              </Nav>
+            </Offcanvas.Body>
+          </Offcanvas>
+        </Container>
+      </Navbar>
+    </div>
+  )
+}
+
+export default Header
