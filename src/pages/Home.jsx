@@ -107,7 +107,7 @@ function Home() {
                                 </div>
                             </div>
                             {/* <!-- Product actions--> */}
-                            <div className="card-footer pt-0 border-top-0 bg-transparent text-center" style={{padding: isMobile ? '3px' : '13px', flexDirection: isMobile ? 'column' : 'row', marginInline: isMobile ? '5px' : '1px'}}>
+                            <div className="card-footer pt-0 border-top-0 bg-transparent text-center" style={{padding: isMobile ? '3px' : '13px', flexDirection: isMobile ? 'column' : 'row', marginInline: isMobile ? '25px' : '3px'}}>
                                 {/* <div className="text-center">
                                   <Link className='stretched-link' to={'/view/1'}></Link>
                                 </div> */}
