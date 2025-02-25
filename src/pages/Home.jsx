@@ -108,19 +108,16 @@ function Home() {
                             </div>
                             {/* <!-- Product actions--> */}
                             <div className="card-footer pt-0 border-top-0 bg-transparent text-center" style={{padding: isMobile ? '7px' : '13px', flexDirection: isMobile ? 'column' : 'row', marginInline: isMobile ? '2px' : '3px'}}>
-                                {/* <div className="text-center">
-                                  <Link className='stretched-link' to={'/view/1'}></Link>
-                                </div> */}
-                                <Link   onClick={()=>dispatch(addToCart({...item, quantity: qties[item.id] || 1}))} className='btn'>
-                                  <i className="fa-solid fa-cart-plus fa-2x" style={{color: "#63E6BE",}} />
+                               
+                                <Link   onClick={()=>dispatch(addToCart({...item, quantity: qties[item.id] || 1}))} className='bt'>
+                                  {/* <i className="fa-solid fa-cart-plus fa-2x" style={{color: "#63",}} /> */}
+                                  <button className='btn btn-warning rounded-pill fw-bold shadow outline-none'>Add To Cart</button>
                                 </Link> 
-                                {/* Quantity Controls - Improved Responsive Design */}
-{/* Quantity Controls - Improved Responsive Design */}
+                                
+
 <div className="d-flex flex-column align-items-center gap-1">
   {/* Quantity Label - Always Above */}
   <span className="fw-bold text-center">Quantity:</span>
-
-  {/* Buttons & Input in a Single Row */}
   <div className="d-flex align-items-center gap-2" style={{ flexWrap: 'nowrap' }}>
     <button 
       className="btn btn-light btn-sm px-3"

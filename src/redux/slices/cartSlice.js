@@ -12,7 +12,7 @@ const cartSlice = createSlice({
 
            if(existingProduct){
             existingProduct.quantity +=1
-            toast.success('Added ')
+            // toast.success('Added ')
            }
            else{ 
             state.cartlist.push({...action.payload,quantity:1})

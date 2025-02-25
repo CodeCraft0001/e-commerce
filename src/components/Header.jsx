@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Offcanvas, Button } from 'react-bootstrap';
 import './Header.css'
+import { useMediaQuery } from 'react-responsive';
 // import cartSlice from '../redux/slices/cartSlice'
 
 
@@ -25,19 +26,28 @@ function Header() {
   },[cartlist])
 
   console.log(cartCount);
+
+  const isMobile = useMediaQuery({maxWidth: 767})
   
 
   return (
     <div className='relative w-full'>
-      <div className='w-full bg-primary text-white d-flex justify-content-between fw-bold py-2 px-5 fixed top-0 z-50'>
-        <span className='
-        '>Holliday Offer Up to <span className='text-warning fa-fade pe-2'>50% OFF</span><i className="fa-solid fa-champagne-glasses" style={{color: "#611b6f",}} /></span>
-        <span>
-        <button className="fa-brands fa-facebook border-0 bg-transparent p-2" />
-        <button className="fa-brands fa-instagram border-0 bg-transparent p-2" />
-        <button className="fa-brands fa-twitter border-0 bg-transparent p-2" />
-        <button className="fa-solid fa-envelope border-0 bg-transparent p-2" />
-        <button className="fa-solid fa-phone border-0 bg-transparent p-2" />
+      <div className='w-full bg-primary text-white d-flex justify-content-between fw-bold py-2 px-5 fixed top-0 z-50'
+      style={{ height: "40px" , display: "flex", alignItems: "center", overflow: "hidden" }}>
+        {/* 1 */}
+        <marquee className="d-inline-block" style={{ lineHeight: "normal", width: '75%' , whiteSpace: "nowrap", fontSize: isMobile ? "12px" : "18px" }}><span className=''>Holliday Offer Up to <span className='text-warning fa-fade pe-2'>50% OFF</span><i className="fa-solid fa-champagne-glasses" style={{color: "#611b6f",}} /></span></marquee>
+        <span className='w-50 d-flex gap-2' style={{marginLeft: 'auto'}}>
+          {/* 2,3,4,5,6 */}
+        <button className="fa-brands fa-facebook border-0 bg-transparent p-2" 
+         style={{fontSize : isMobile ? '12px' : '18px'}} />
+        <button className="fa-brands fa-instagram border-0 bg-transparent p-2" 
+         style={{fontSize : isMobile ? '12px' : '18px'}} />
+        <button className="fa-brands fa-twitter border-0 bg-transparent p-2" 
+         style={{fontSize : isMobile ? '12px' : '18px'}} />
+        <button className="fa-solid fa-envelope border-0 bg-transparent p-2" 
+         style={{fontSize : isMobile ? '12px' : '18px'}} />
+        <button className="fa-solid fa-phone border-0 bg-transparent p-2" 
+         style={{fontSize : isMobile ? '12px' : '18px'}} />
         </span>
       </div>
       <Navbar expand="lg" className="custom-navbar bg-success">
@@ -66,9 +76,9 @@ function Header() {
                   Home
                 </Nav.Link>
                 <Nav.Link as={Link} to="/cart" className="nav-item fw-bold text-dark">
-                  <div className='position-relative d-inline-block'>
-                    <i className="fa-solid fa-cart-plus fa-2x" style={{ color: '#63E6BE' }} />
-                    <span className="badge bg-light text-primary ms-2 badge-top-right">{cartCount}</span>
+                  <div className='position-relative d-inline-block text-white'>
+                    Cart Items
+                    <span className="badge bg-secondary text-light ms-2 badge-top-right">{cartCount}</span>
                   </div>
                 </Nav.Link>
                 <NavDropdown title="Category" id="basic-nav-dropdown" className="nav-item fw-bold">
