@@ -45,6 +45,10 @@ const cartSlice = createSlice({
             }
           
         },
+        increaseQty : (state, action)=> {
+            const existingProduct = state.cartlist.find(item => item.id === action.payload.id)
+            existingProduct.quantity+=1
+        },
         updateQuantity : (state, action)=> {
             const {id, newQty} = action.payload //Get id and updated Quantity
             const existingProduct = state.cartlist.find(item=> item.id === id)
@@ -61,5 +65,5 @@ const cartSlice = createSlice({
     }
 })
 //2 goto Home.jsx
-export const {addToCart, removeFromCart, emptyCart, decreaseQty, updateQuantity } = cartSlice.actions
+export const {addToCart, removeFromCart, emptyCart, decreaseQty, updateQuantity, increaseQty } = cartSlice.actions
 export default cartSlice.reducer

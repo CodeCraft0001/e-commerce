@@ -69,21 +69,21 @@ function Home() {
       {/* <h1>Home page</h1> */}
       <Carousel activeIndex={index} onSelect={handleSelect} className='container mt-3 mb-2 shadow'>
       <Carousel.Item >
-        <img src='https://t3.ftcdn.net/jpg/04/65/46/52/360_F_465465254_1pN9MGrA831idD6zIBL7q8rnZZpUCQTy.jpg' text="First slide" className='d-block w-100' height={'485px'} />
+        <img src='https://t3.ftcdn.net/jpg/04/65/46/52/360_F_465465254_1pN9MGrA831idD6zIBL7q8rnZZpUCQTy.jpg' text="First slide" className='d-block w-100' height={isMobile ? '333px' : '495px'} />
         <Carousel.Caption>
           <h3 className='text-dark'>Shop Outside the Box</h3>
           <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
-        <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7SDCD0OTneaEaVHPhFVrb4R3d7sBM89hExg&s' text="Second slide" className='d-block w-100' height={'485px'} />
+        <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7SDCD0OTneaEaVHPhFVrb4R3d7sBM89hExg&s' text="Second slide" className='d-block w-100' height={isMobile ? '333px' : '495px'} />
         <Carousel.Caption>
           <h3 className='text-light'>Discover Your Unseen Passion</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
-        <img src='https://t3.ftcdn.net/jpg/06/32/90/44/360_F_632904407_iPLi90WdjZ0oKAeRiL98gEIeHIUtzWae.jpg' text="Third slide" className='d-block w-100' height={'485px'} />
+        <img src='https://t3.ftcdn.net/jpg/06/32/90/44/360_F_632904407_iPLi90WdjZ0oKAeRiL98gEIeHIUtzWae.jpg' text="Third slide" className='d-block w-100' height={isMobile ? '333px' : '495px'} />
         <Carousel.Caption>
           <h3 className='text-info'>Unlock the Extraordinary</h3>
           <p>

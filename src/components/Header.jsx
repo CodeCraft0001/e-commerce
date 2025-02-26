@@ -125,12 +125,7 @@ function Header() {
           <Nav className="ms-auto d-flex align-items-center">
               <Nav.Link as={Link} to="/" className="nav-item fw-bold text-white">
                 Home
-              </Nav.Link>
-              <Nav.Link as={Link} to="/cart" className="nav-item fw-bold text-dark">
-                <div className="position-relative d-inline-block text-white">
-                <i className="fa-solid fa-cart-shopping fa-lg" style={{color: "#74C0FC",}} /><span className="badge bg-light text-secondary ms-2 badge-top-right">{cartCount}</span>
-                </div>
-              </Nav.Link>
+              </Nav.Link>            
               <NavDropdown title={<span className='text-white'>Category</span>} id="basic-nav-dropdown" className="nav-item fw-bold">
                 <NavDropdown.Item href="#action/3.1">Electronics</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">Fashion</NavDropdown.Item>
@@ -138,6 +133,11 @@ function Header() {
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
               </NavDropdown>
+              <Nav.Link as={Link} to="/cart" className="nav-item fw-bold text-dark">
+                <div className="position-relative d-inline-block text-white">
+                <i className="fa-solid fa-cart-shopping fa-lg" style={{color: "#74C0FC",}} /><span className="badge bg-light text-secondary ms-2 badge-top-right">{cartCount}</span>
+                </div>
+              </Nav.Link>
             </Nav>
         )  
         }

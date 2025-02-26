@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, InputGroup, Form } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { addToCart,removeFromCart,updateQuantity,emptyCart,decreaseQty } from '../redux/slices/cartSlice';
+import { addToCart,removeFromCart,updateQuantity,emptyCart,decreaseQty,increaseQty } from '../redux/slices/cartSlice';
 
 function CartInMobile() {
   const cartlist = useSelector((state) => state.cartSlice.cartlist);
@@ -39,7 +39,7 @@ function CartInMobile() {
 
             {/* Quantity & Remove Button */}
             <div className="col-3 d-flex flex-column align-items-center">
-              <Button onClick={()=>dispatch(addToCart(item))} variant='light' size='sm' className='w-25'>+</Button>
+              <Button onClick={()=>dispatch(increaseQty(item))} variant='light' size='sm' className='w-25'>+</Button>
               <InputGroup className='my- w-50'>
                 <Form.Control type='text' value={item.quantity} readOnly className='text-center' />
               </InputGroup>

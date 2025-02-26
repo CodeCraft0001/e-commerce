@@ -1,10 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { removeFromCart, addToCart, decreaseQty } from '../redux/slices/cartSlice';
+import { removeFromCart, addToCart, decreaseQty, updateQuantity, increaseQty } from '../redux/slices/cartSlice';
 import { useDispatch } from 'react-redux';
 import PaymentDetails from '../components/PaymentDetails';
 import CartInMobile from './CartInMobile';
 import { useMediaQuery } from 'react-responsive';
+
 
 function ShoppingCart() {
   const cartlist = useSelector((state) => state.cartSlice.cartlist);
@@ -54,7 +55,7 @@ function ShoppingCart() {
                                 <td className='fw-bold align-middle text-center'>${item.price}</td>
                                 <td className='align-middle text-end'>
                                   <div className='w-100 border rounded rounded-pill d-flex justify-content-between align-items-center py-1 ms-auto'>
-                                    <button onClick={() => dispatch(addToCart(item))} className='btn px-2 py-0'>+</button>
+                                    <button onClick={() => dispatch(increaseQty(item))} className='btn px-2 py-0'>+</button>
                                     <span className='fw-bold'>{item.quantity}</span>
                                     <button onClick={() => dispatch(decreaseQty(item))} className='btn px-2 py-0'>-</button>
                                   </div>
