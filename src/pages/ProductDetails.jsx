@@ -1,12 +1,20 @@
 import React,{useEffect, useState} from 'react'
-import { Link } from 'react-router'
+// import { Link } from 'react-router'
 import { useParams } from 'react-router'
+import { addToCart } from '../redux/slices/cartSlice'
 import { useSelector, useDispatch } from 'react-redux'
 // import { addToCart } from '../redux/slices/cartSlice'
 // import Spinner from 'react-bootstrap/Spinner';
 
 
 function ProductDetails() {
+
+  const [quantity, setQuantity] = useState(1)
+
+  const handleToCart = ()=>{
+    dispatch(addToCart({ ...pro, quantity }))
+    setQuantity(1)
+  }
 
   const [pro,setPro] = useState({})
   const dispatch  = useDispatch()
@@ -47,13 +55,32 @@ function ProductDetails() {
                         </div>
                         <p className="lead">{pro.description}</p>
                         <div className="d-flex justify-content-between">
-                            <input className="form-control text-center me-3" id="inputQuantity" type="num" value="1" style={{maxWidth: "3rem"}} />
-                            <button >
-                              <button className="btn  flex-shrink-0" type="button">
+                            {/* <input className="form-control text-center me-3" id="inputQuantity" type="num" value="1" style={{maxWidth: "3rem"}} /> */}
+                            
+                              <button onClick={()=>dispatch(handleToCart())} 
+                              className="btn flex-shrink-0" 
+                              type="button">
                                   <i className="bi-cart-fill me-1"></i>
                                   <i className="fa-solid fa-cart-plus fa-2x" style={{color: "#63E6BE",}} /> 
                               </button>
-                            </button>
+                            <div>
+                              <button
+                              className='btn btn-light text-success fw-bold'
+                              onClick={()=>setQuantity((prev)=>prev + 1)}
+                              >
+                                +
+                              </button>
+                              <input type="text"
+                              className='text-center w-25 border fw-bold text-primary' 
+                              value={quantity}
+                              />
+                              <button
+                              className='btn btn-light text-danger fw-bold'
+                              onClick={()=>setQuantity((prev)=> Math.max(1, prev-1 ))}
+                              >
+                                -
+                              </button>
+                            </div>
                         </div>
                     </div>
                 </div>

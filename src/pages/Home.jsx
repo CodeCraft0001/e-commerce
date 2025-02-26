@@ -25,9 +25,27 @@ function Home() {
   //   setQties(0)
   // }
 
-  const handleIncreaseQty =(item)=>{
-    dispatch(addToCart({...item, quantity: qties[item.id] || 1}))
-    updateQty(item.id,1)
+  // //Previous handleIncreaseQty:
+  // const handleIncreaseQty =(item)=>{
+  //   dispatch(addToCart({...item, quantity: qties[item.id] || 1}))
+  //   updateQty(item.id,1)
+  // }
+// Changes are Started From here................................
+  //new handleIncreaseQty:
+  const handleIncreaseQty = (id) => {
+    setQties((prevQties)=>({
+      ...prevQties,
+      [id]: (prevQties[id] || 1) +1
+    }))
+  }
+
+  //Function for handling Adding to Cart
+  const handleAddToCart = (e,product)=> {
+    e.preventDefault() // Preventingg page default
+    const quantity = qties[product.id] || 1 //get the temporary quantity
+    dispatch(addToCart({...product, quantity}))
+//Reset temperory qty:
+    setQties((prevQtyies)=> ({ ...prevQtyies, [product.id]:1 }))
   }
 
   //Functon For Updating Qauntity
@@ -109,10 +127,10 @@ function Home() {
                             {/* <!-- Product actions--> */}
                             <div className="card-footer pt-0 border-top-0 bg-transparent text-center" style={{padding: isMobile ? '7px' : '13px', flexDirection: isMobile ? 'column' : 'row', marginInline: isMobile ? '2px' : '3px'}}>
                                
-                                <Link   onClick={()=>dispatch(addToCart({...item, quantity: qties[item.id] || 1}))} className='bt'>
+                                <div    className='bt'>
                                   {/* <i className="fa-solid fa-cart-plus fa-2x" style={{color: "#63",}} /> */}
-                                  <button className='btn btn-warning rounded-pill fw-bold shadow outline-none'>Add To Cart</button>
-                                </Link> 
+                                  <button onClick={(e)=>dispatch(handleAddToCart(e,item))} className='btn btn-warning rounded-pill fw-bold shadow outline-none'>Add To Cart</button>
+                                </div> 
                                 
 
 <div className="d-flex flex-column align-items-center gap-1">
@@ -121,7 +139,7 @@ function Home() {
   <div className="d-flex align-items-center gap-2" style={{ flexWrap: 'nowrap' }}>
     <button 
       className="btn btn-light btn-sm px-3"
-      onClick={() => handleIncreaseQty(item)}
+      onClick={() => handleIncreaseQty(item.id)}
       style={{ minWidth: isMobile ? '30px' : '40px' }}
     >
       +

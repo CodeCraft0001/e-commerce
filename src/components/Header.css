@@ -5,9 +5,9 @@ background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 50%, rgba
 
 .badge-top-right {
     position: absolute;
-    top: -11px;  /* Adjust the distance from the top */
-    right: -10px; /* Adjust the distance from the right */
+    top: -14px;  /* Adjust the distance from the top */
+    right: -14px; /* Adjust the distance from the right */
     font-size: 12px; /* Make it smaller */
-    padding: 3px 6px; /* Adjust padding */
-    border-radius: 75%; /* Make it round */
+    padding: 2px 4px; /* Adjust padding */
+    border-radius: 65%; /* Make it round */
   }

@@ -11,11 +11,11 @@ const cartSlice = createSlice({
             const existingProduct = state.cartlist.find(item => item.id === action.payload.id)
 
            if(existingProduct){
-            existingProduct.quantity +=1
-            // toast.success('Added ')
+            existingProduct.quantity += action.payload.quantity
+            // toast.success('QUantity Updated')
            }
            else{ 
-            state.cartlist.push({...action.payload,quantity:1})
+            state.cartlist.push({...action.payload, quantity:action.payload.quantity})
             toast.success('Added to cart')
              }
              console.log(state.cartlist,"cart");
@@ -52,7 +52,7 @@ const cartSlice = createSlice({
             
             if(existingProduct)
             {
-                existingProduct.quantity += action.payload
+                existingProduct.quantity = newQty //Update Quantity
                 toast.promise('Qty Increased')
             } 
             
